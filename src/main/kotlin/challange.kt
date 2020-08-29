@@ -10,7 +10,7 @@ fun main(){
         println("3. exit")
         println()
         println("Enter Menu Number")
-        var input :Int = read.nextInt()
+        val input :Int = read.nextInt()
 
     when (input) {
         1 -> {
@@ -34,17 +34,10 @@ fun main(){
             val s = String.format("%.2f", volume)
             println("----------------------")
             println("Result Volume Balok = $s")
-            println("Again? [Y]es or [N]o")
+            println("----------------------")
+            println("Again? [y]es or [n]o")
             confirm = reader.next()
-            if (confirm == "y" || confirm == "Y"){
-                println("\n")
-
-                return main()
-            }
-            else if (confirm == "n" || confirm == "N"){
-                println("Thanks for using me!!")
-                exitProcess(0)
-            }
+            confirm(confirm)
         }
         2 -> {
             val reader = Scanner(System.`in`)
@@ -59,37 +52,26 @@ fun main(){
             val s = String.format("%.2f", volume)
             println("----------------------")
             println("Result Volume Bola = $s")
-            println("Again? [Y]es or [N]o")
+            println("----------------------")
+            println("Again? [y]es or [n]o")
             confirm = reader.next()
-            if (confirm == "y" || confirm == "Y"){
-                println("\n")
-
-                return main()
-            }
-            else if (confirm == "n" || confirm == "N"){
-                println("Thanks for using me!!")
-                exitProcess(0)
-            }
+            confirm(confirm)
 
         }
         3 -> {
-            exitProcess(0)
+            val confirm: String
+            val reader = Scanner(System.`in`)
+            println("Are you sure? [y]es or [n]o")
+            confirm = reader.next()
+            confirmExit(confirm)
         }
         else -> {
             val confirm: String
             val reader = Scanner(System.`in`)
             println("Invalid Command")
-            println("Back? [Y]es or [N]o")
+            println("Back? [y]es or [n]o")
             confirm = reader.next()
-            if (confirm == "y" || confirm == "Y"){
-                println("\n")
-
-                return main()
-            }
-            else if (confirm == "n" || confirm == "N"){
-                println("Thanks for using me!!")
-                exitProcess(0)
-            }
+            confirm(confirm)
         }
     }
 }
@@ -98,4 +80,36 @@ fun rectVal(Length: Double, Height: Double, Width: Double):Double {
 }
 fun ball(rad: Double): Double {
     return rad * rad * rad * Math.PI * 4/3
+}
+fun confirm(input: String)
+{
+   return if (input == "y" || input == "Y"){
+       println("\n")
+
+       return main()
+   }
+   else if (input == "n" || input == "N"){
+       println("Thanks for using me!!")
+       exitProcess(0)
+   }
+    else{
+       println("Invalid Menu")
+       return main()
+   }
+}
+fun confirmExit(input: String)
+{
+    return if (input == "n" || input == "N"){
+        println("\n")
+
+        return main()
+    }
+    else if (input == "y" || input == "Y"){
+        println("Thanks for using me!!")
+        exitProcess(0)
+    }
+    else{
+        println("Invalid Menu")
+        return main()
+    }
 }
